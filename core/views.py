@@ -24,8 +24,8 @@ def set_products(request):
     validate_info = validate_product_request(user_data)
     if 'error' not in validate_info:
         product_name = user_data.get('product_name', '')
-        product_id = user_data.get('product_id', '')
-        owner_id = user_data.get('owner_id', '')
+        product_id = user_data.get('product_id')
+        owner_id = user_data.get('owner_id')
         response = create_product(product_name, product_id, owner_id)
         return Response(response, status=status.HTTP_200_OK)
     else:
