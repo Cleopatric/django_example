@@ -48,14 +48,15 @@ def _form_filter(request: dict) -> dict:
     return filters
 
 
-def create_product(product_name: str, product_id: int, owner_id: int) -> dict:
+def create_product(request: dict) -> dict:
     """ Create product by product_name, product_id and owner_id.
 
-    :param product_name: name for new product.
-    :param product_id:   id for new product.
-    :param owner_id:     id of existing product owner.
-    :return:             message with creation status.
+    :param request: HTTP requests.
+    :return:        message with creation status.
     """
+    product_name = request.get('product_name', '')
+    product_id = request.get('product_id')
+    owner_id = request.get('owner_id')
     owner = get_owner_by_id(owner_id)
     return _create_product(product_name, product_id, owner_id, owner)
 
